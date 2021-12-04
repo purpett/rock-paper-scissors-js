@@ -44,35 +44,38 @@ function playRound(playerSelection, computerSelection) {
     }
 } 
 
-function game() {
-    let i = 0
-    let playerPoints = 0
-    let computerPoints = 0
-    while (i < 5) {
-        let playerSelection = userPlay()
+
+let playerPoints = 0
+let computerPoints = 0
+let results = document.querySelector('#displayResults');
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+        let choice = e.target.dataset.choice
         let computerSelection = computerPlay()
-        let roundResult = playRound(playerSelection, computerSelection);
+        let roundResult = playRound(choice, computerSelection)
         if (roundResult == 0) {
-            alert("It's a tie")
+            results.innerHTML += `<div>It's a tie.</div>`
         } else if (roundResult == 1) {
             playerPoints += 1
-            alert(`Player chooses ${playerSelection}, Computer chooses ${computerSelection}. Player wins.`)
+            results.innerHTML += `<div>Player chooses ${choice}, Computer chooses ${computerSelection}. Player wins.</div>`
         } else if (roundResult == 2) {
             computerPoints += 1
-            alert(`Player chooses ${playerSelection}, Computer chooses ${computerSelection}. Computer wins.`)
+            results.innerHTML += `<div>Player chooses ${choice}, Computer chooses ${computerSelection}. Computer wins.</div>`
         } else {
-            alert("Invalid selection")
+            results.innerHTML += "<div>Invalid selection</div>"
         }
-        i += 1
-    }
-    alert(`Player: ${playerPoints}, Computer: ${computerPoints}`)
-    if (playerPoints > computerPoints) {
-        alert("Player wins")
-    } else if (playerPoints < computerPoints) {
-        alert("Computer wins")
-    } else {
-        alert("It's a tie")
-    }
-}
+        results.innerHTML += `<div>Current score: Player ${playerPoints}, Computer ${computerPoints}</div>`
+        
+        if (playerPoints == 5 || computerPoints == 5) {
+            if (playerPoints > computerPoints) {
+                results.innerHTML += `<div>The winner is: Player!</div>`
+            } else {
+                results.innerHTML += "<div>The winner is: Computer!</div>"
+            } 
+            playerPoints = 0
+            computerPoints = 0
+        }
+    });
+});
 
-game();
