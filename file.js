@@ -44,6 +44,9 @@ function playRound(playerSelection, computerSelection) {
     }
 } 
 
+const playerBox = document.querySelector(".player.score");
+const computerBox = document.querySelector(".computer.score");
+
 
 let playerPoints = 0
 let computerPoints = 0
@@ -51,22 +54,23 @@ let results = document.querySelector('#displayResults');
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
     button.addEventListener('click', (e) => {
-        let choice = e.target.dataset.choice
+        let choice = e.currentTarget.dataset.choice
         let computerSelection = computerPlay()
         let roundResult = playRound(choice, computerSelection)
         if (roundResult == 0) {
-            results.innerHTML += `<div>It's a tie.</div>`
+            results.textContent= `Tie.`
         } else if (roundResult == 1) {
             playerPoints += 1
-            results.innerHTML += `<div>Player chooses ${choice}, Computer chooses ${computerSelection}. Player wins.</div>`
+            results.textContent= `${choice} vs ${computerSelection}`
         } else if (roundResult == 2) {
             computerPoints += 1
-            results.innerHTML += `<div>Player chooses ${choice}, Computer chooses ${computerSelection}. Computer wins.</div>`
+            results.textContent= `${choice} vs ${computerSelection}`
         } else {
-            results.innerHTML += "<div>Invalid selection</div>"
-        }
-        results.innerHTML += `<div>Current score: Player ${playerPoints}, Computer ${computerPoints}</div>`
-        
+            results.textContent= "Invalid selection"
+        }        
+        playerBox.textContent = playerPoints;
+        computerBox.textContent = computerPoints;
+
         if (playerPoints == 5 || computerPoints == 5) {
             if (playerPoints > computerPoints) {
                 results.innerHTML += `<div>The winner is: Player!</div>`
@@ -78,4 +82,3 @@ buttons.forEach((button) => {
         }
     });
 });
-
