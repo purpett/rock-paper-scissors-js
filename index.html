@@ -2,9 +2,58 @@
 <html>
     <head>
         <meta charset = "utf-8">
-        <title> Rock, Paper, Scissors</title>
+        <title> Rock Paper Scissors</title>
+        <link rel="stylesheet" href="style.css">
+
     </head>
     <body>
-        <script src="file.js"></script>
+        <script src="file.js" defer></script>
+        <div class="content">
+            <div class="header"></div>
+            <div class="homepage">
+                <div class="instructions">
+                    <div class="rules">Player VS Computer. <br> 5 Rounds.</div>
+                    <div class="scroll">
+                        <img class="arrow" src="images/arrow.png"> 
+                        <p>Scroll to play</p>
+                    </div>
+                </div>
+                <div class="title">
+                    <div>Rock</div>
+                    <div>Paper</div>
+                    <div>Scissors.</div>
+                </div>
+            </div>
+            <div class ="choose">Choose:</div>
+            <div class="buttons">
+                <div class="rock-button">
+                    <button data-choice="Rock"><img src="images/rock.png"></button>
+                    <div class="sub">ROCK</div>
+                </div>
+                <div class="paper-button">
+                    <button data-choice="Paper"><img src="images/paper.png"></button>
+                    <div class="sub">PAPER</div>
+                </div>
+                <div class="scissors-button">
+                    <button data-choice="Scissors"><img src="images/scissors.png"></button>
+                    <div class="sub">SCISSORS</div>
+                </div>
+            </div>
+            <div class="score-boxes">
+                <div class="player-section">
+                    <div class="score-title">Player</div>
+                    <div class="player score">0</div>
+                 </div> 
+                 <div class="vs">VS</div>  
+                 <div class="computer-section">
+                    <div class="score-title">Computer</div>
+                    <div class="computer score">0</div>
+                </div>
+            </div>
+            <div id="displayResults"></div>
+        </div>    
+        <div class="footer">
+            Made with ♡ by @purpett <a target="_blank" href="https://github.com/purpett"><img class="octocat" src="images/octocat.svg"></a>
+        </div>
     </body>
 </html>
